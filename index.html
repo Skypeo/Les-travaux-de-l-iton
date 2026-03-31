@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les Travaux de l'Iton — Terrassement & Assainissement à L'Aigle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — Variables CSS
+    ============================================================ */
+    :root {
+      --orange:        #FCAD13;
+      --orange-dark:   #e09a00;
+      --orange-light:  #FFD166;
+      --black:         #0D0D0D;
+      --dark:          #1A1A1A;
+      --dark-2:        #242424;
+      --grey-800:      #3A3A3A;
+      --grey-600:      #64748B;
+      --grey-200:      #E2E8F0;
+      --grey-100:      #F4F4F4;
+      --white:         #FFFFFF;
+      --font-heading:  'Oswald', sans-serif;
+      --font-body:     'Open Sans', sans-serif;
+      --radius:        8px;
+      --radius-lg:     16px;
+      --shadow-sm:     0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md:     0 8px 32px rgba(0,0,0,0.14);
+      --shadow-lg:     0 24px 64px rgba(0,0,0,0.22);
+      --transition:    0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --z-nav:         50;
+      --z-modal:       100;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--dark);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .section-title.light { color: var(--white); }
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--grey-600);
+      line-height: 1.75;
+      max-width: 580px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--orange);
+      color: var(--black);
+    }
+    .btn-primary:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(252, 173, 19, 0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+      transform: translateY(-2px);
+    }
+    .btn-dark {
+      background: var(--dark);
+      color: var(--white);
+    }
+    .btn-dark:hover {
+      background: var(--grey-800);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Scroll reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: var(--z-nav);
+      padding: 20px 0;
+      transition: var(--transition);
+    }
+    #navbar.scrolled {
+      background: var(--black);
+      padding: 14px 0;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--orange);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover {
+      color: var(--white);
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .nav-cta {
+      background: var(--orange);
+      color: var(--black) !important;
+      padding: 10px 22px;
+      border-radius: var(--radius);
+      font-weight: 700 !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover {
+      background: var(--orange-dark) !important;
+      box-shadow: 0 4px 16px rgba(252,173,19,0.4);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Mobile menu */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--black);
+      z-index: calc(var(--z-nav) - 1);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .nav-mobile.open {
+      display: flex;
+      opacity: 1;
+      pointer-events: all;
+    }
+    .nav-mobile a {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      transition: color var(--transition);
+    }
+    .nav-mobile a:hover { color: var(--orange); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--black);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://le-de.cdn-website.com/1a27429cc4594832aa260fcf0f04977b/dms3rep/multi/opt/2965-1920w.jpeg');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+    #hero.loaded .hero-bg { transform: scale(1); }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0,0,0,0.88) 0%,
+        rgba(0,0,0,0.65) 50%,
+        rgba(252,173,19,0.12) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(252,173,19,0.15);
+      border: 1px solid rgba(252,173,19,0.3);
+      border-radius: 100px;
+      padding: 8px 20px;
+      color: var(--orange);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+    }
+    .hero-title span {
+      color: var(--orange);
+      display: block;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+    .hero-phone {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .hero-phone svg { color: var(--orange); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: float 2.5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+    .hero-scroll svg { color: rgba(255,255,255,0.4); }
+    .hero-stats {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item {
+      padding: 24px 36px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 6px;
+    }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    #services {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .services-header {
+      max-width: 640px;
+      margin-bottom: 60px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--grey-100);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid transparent;
+      group: true;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .service-card:hover {
+      background: var(--white);
+      border-color: var(--grey-200);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(252,173,19,0.1);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+    .service-card:hover .service-icon {
+      background: var(--orange);
+    }
+    .service-card:hover .service-icon svg {
+      color: var(--black);
+    }
+    .service-icon svg { color: var(--orange); transition: var(--transition); }
+    .service-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--grey-600);
+      line-height: 1.7;
+    }
+    .service-number {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: rgba(0,0,0,0.04);
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* ============================================================
+       À PROPOS
+    ============================================================ */
+    #about {
+      padding: 100px 0;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    #about::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(252,173,19,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-images {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+    .about-img-secondary {
+      position: absolute;
+      bottom: -32px;
+      right: -32px;
+      width: 55%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      border: 4px solid var(--black);
+    }
+    .about-badge-img {
+      position: absolute;
+      top: -24px;
+      left: -24px;
+      background: var(--orange);
+      color: var(--black);
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .about-badge-img strong { font-size: 1.8rem; }
+    .about-badge-img span { font-size: 0.65rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .about-content .section-subtitle { color: rgba(255,255,255,0.55); max-width: 100%; }
+    .about-text {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin: 24px 0 32px;
+    }
+    .about-values {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .about-value {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+    .about-value:hover {
+      background: rgba(252,173,19,0.06);
+      border-color: rgba(252,173,19,0.2);
+    }
+    .about-value-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(252,173,19,0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .about-value-icon svg { color: var(--orange); }
+    .about-value-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ============================================================
+       GALERIE
+    ============================================================ */
+    #gallery {
+      padding: 100px 0;
+      background: var(--grey-100);
+    }
+    .gallery-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 320px 320px;
+      gap: 16px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--dark-2);
+    }
+    .gallery-item:nth-child(1) {
+      grid-row: 1 / 3;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+      opacity: 0;
+      transition: var(--transition);
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-caption {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .gallery-tag {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--black);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    /* ============================================================
+       POURQUOI NOUS CHOISIR
+    ============================================================ */
+    #why {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .why-visual {
+      position: relative;
+    }
+    .why-bg-shape {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--orange) 0%, #e09a00 100%);
+      border-radius: var(--radius-lg);
+      transform: rotate(-2deg);
+      opacity: 0.12;
+    }
+    .why-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      position: relative;
+      z-index: 1;
+    }
+    .why-accent-box {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      background: var(--orange);
+      color: var(--black);
+      padding: 24px 28px;
+      border-radius: var(--radius-lg);
+      z-index: 2;
+      text-align: center;
+    }
+    .why-accent-box strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .why-accent-box span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .why-items {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .why-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .why-item-num {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1;
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+    .why-item-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .why-item-text {
+      font-size: 0.9rem;
+      color: var(--grey-600);
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    #contact {
+      padding: 100px 0;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+    #contact::after {
+      content: '';
+      position: absolute;
+      bottom: -200px;
+      left: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(252,173,19,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .contact-info .section-title { margin-bottom: 16px; }
+    .contact-info .section-subtitle { color: rgba(255,255,255,0.5); }
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+    .contact-item:hover {
+      background: rgba(252,173,19,0.06);
+      border-color: rgba(252,173,19,0.2);
+    }
+    .contact-item-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(252,173,19,0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-item-icon svg { color: var(--orange); }
+    .contact-item-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 2px;
+    }
+    .contact-item-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .contact-item-value a { color: var(--white); transition: color var(--transition); }
+    .contact-item-value a:hover { color: var(--orange); }
+
+    /* Form */
+    .contact-form {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .form-title {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--white);
+      transition: border-color var(--transition);
+      outline: none;
+      width: 100%;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--orange);
+      background: rgba(252,173,19,0.04);
+    }
+    .form-group select option { background: var(--dark); color: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--orange);
+      color: var(--black);
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .form-submit:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(252,173,19,0.4);
+    }
+
+    /* Map placeholder */
+    .map-placeholder {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg);
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: rgba(255,255,255,0.25);
+      overflow: hidden;
+      position: relative;
+    }
+    .map-placeholder svg { color: var(--orange); opacity: 0.6; }
+    .map-placeholder p { font-size: 0.85rem; letter-spacing: 0.05em; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #footer {
+      background: var(--black);
+      padding: 48px 0 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 24px;
+    }
+    .footer-logo img { height: 36px; }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+    .footer-links a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-copy strong { color: var(--orange); }
+    .footer-legal {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.15);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-img-secondary { display: none; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 240px 240px 240px;
+      }
+      .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+      .why-grid { grid-template-columns: 1fr; gap: 48px; }
+      .why-visual { display: none; }
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-stats {
+        position: static;
+        border: none;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        margin-top: 40px;
+        background: none;
+        backdrop-filter: none;
+        flex-wrap: wrap;
+      }
+      .stat-item { padding: 16px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .gallery-item:nth-child(1) { grid-column: auto; grid-row: auto; height: 260px; }
+      .gallery-item { height: 220px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .contact-form { padding: 28px 20px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.2rem; }
+      .stat-item { padding: 12px 16px; }
+      .stat-number { font-size: 1.6rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .hero-bg { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo" aria-label="Retour en haut">
+          <img
+            src="https://le-de.cdn-website.com/1a27429cc4594832aa260fcf0f04977b/dms3rep/multi/opt/0530eb93-8fa4-4d12-81e6-2f9fef1f87cb-800-247w.jpg"
+            alt="Les Travaux de l'Iton"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+          />
+          <span style="display:none; font-family:var(--font-heading); font-size:1.1rem; font-weight:700; color:white; letter-spacing:0.05em; text-transform:uppercase;">LES TRAVAUX<br><span style="color:var(--orange)">DE L'ITON</span></span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#gallery">Réalisations</a></li>
+          <li><a href="#why">Nos atouts</a></li>
+          <li><a href="#contact" class="nav-cta">Devis gratuit</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="nav-mobile">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <nav class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Menu mobile">
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#about" class="mobile-link">À propos</a>
+    <a href="#gallery" class="mobile-link">Réalisations</a>
+    <a href="#why" class="mobile-link">Nos atouts</a>
+    <a href="#contact" class="mobile-link" style="color:var(--orange)">Devis gratuit</a>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero" aria-label="Présentation">
+    <div class="hero-bg" role="img" aria-label="Chantier de terrassement"></div>
+    <div class="hero-overlay"></div>
+    <div class="container" style="position:relative;z-index:2; width:100%;">
+      <div class="hero-content">
+        <div class="hero-badge">Depuis 2004 — Saint-Ouen-sur-Iton, Orne</div>
+        <h1 class="hero-title">
+          Terrassement<br>
+          <span>& Assainissement</span>
+          à L'Aigle
+        </h1>
+        <p class="hero-subtitle">
+          Spécialistes du terrassement, assainissement, maçonnerie et aménagements extérieurs en Normandie. Devis personnalisé, réponse réactive, prestation adaptée à votre budget.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.18a19.79 19.79 0 01-3.07-8.72A2 2 0 012 .5h3a2 2 0 012 1.72c.13.96.35 1.9.67 2.81a2 2 0 01-.45 2.11L5.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.54 2.81.67A2 2 0 0122 14.92z"/></svg>
+            Demander un devis
+          </a>
+          <a href="tel:0678506904" class="hero-phone" aria-label="Appeler le 06 78 50 69 04">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.18a19.79 19.79 0 01-3.07-8.72A2 2 0 012 .5h3a2 2 0 012 1.72c.13.96.35 1.9.67 2.81a2 2 0 01-.45 2.11L5.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.54 2.81.67A2 2 0 0122 14.92z"/></svg>
+            06 78 50 69 04
+          </a>
+        </div>
+      </div>
+      <div class="hero-stats" role="list" aria-label="Chiffres clés">
+        <div class="stat-item" role="listitem">
+          <div class="stat-number">+20</div>
+          <div class="stat-label">Ans d'expertise</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Types de clients</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Domaines d'activité</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Devis personnalisé</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Découvrir</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <section id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="services-header reveal">
+        <span class="section-label">Ce que nous faisons</span>
+        <h2 id="services-title" class="section-title">Nos domaines<br>d'expertise</h2>
+      </div>
+      <div class="services-grid">
+
+        <!-- Terrassement -->
+        <article class="service-card reveal delay-1" tabindex="0">
+          <span class="service-number" aria-hidden="true">01</span>
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-6 7 6v12"/><path d="M9 20v-5h6v5"/></svg>
+          </div>
+          <h3 class="service-title">Terrassement</h3>
+          <p class="service-desc">Travaux de terrassement pour tous vos projets de construction. Décaissement, remblayage, nivellement et viabilisation de terrain.</p>
+        </article>
+
+        <!-- Assainissement -->
+        <article class="service-card reveal delay-2" tabindex="0">
+          <span class="service-number" aria-hidden="true">02</span>
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 007-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 007 7z"/></svg>
+          </div>
+          <h3 class="service-title">Assainissement</h3>
+          <p class="service-desc">Vidange, curage et installation de systèmes d'assainissement. Fosse septique, micro-station, réseaux eaux usées et pluviales.</p>
+        </article>
+
+        <!-- Aménagement extérieur -->
+        <article class="service-card reveal delay-3" tabindex="0">
+          <span class="service-number" aria-hidden="true">03</span>
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8h10M7 12h6"/></svg>
+          </div>
+          <h3 class="service-title">Aménagement Extérieur</h3>
+          <p class="service-desc">Clôtures, barrières, allées, portails et aménagements paysagers. Valorisez votre propriété avec des aménagements durables.</p>
+        </article>
+
+        <!-- Maçonnerie -->
+        <article class="service-card reveal delay-1" tabindex="0">
+          <span class="service-number" aria-hidden="true">04</span>
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16M7 4v16M17 4v16"/></svg>
+          </div>
+          <h3 class="service-title">Maçonnerie</h3>
+          <p class="service-desc">Travaux de maçonnerie générale : fondations, murs de soutènement, dallage, construction de structures en béton et pierre.</p>
+        </article>
+
+        <!-- Location d'engins -->
+        <article class="service-card reveal delay-2" tabindex="0">
+          <span class="service-number" aria-hidden="true">05</span>
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><circle cx="9" cy="17" r="1"/><circle cx="15" cy="17" r="1"/><path d="M9 17h6"/></svg>
+          </div>
+          <h3 class="service-title">Location d'Engins</h3>
+          <p class="service-desc">Location de matériel avec conducteur qualifié. Pelle 24T, concasseur et autres engins pour vos chantiers, particuliers et professionnels.</p>
+        </article>
+
+        <!-- Concassage -->
+        <article class="service-card reveal delay-3" tabindex="0">
+          <span class="service-number" aria-hidden="true">06</span>
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h3 class="service-title">Concassage</h3>
+          <p class="service-desc">Service de concassage de matériaux sur chantier. Valorisation des gravats et production de granulats recyclés pour vos travaux.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       À PROPOS
+  ============================================================ -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images reveal-left">
+          <img
+            src="https://le-de.cdn-website.com/1a27429cc4594832aa260fcf0f04977b/dms3rep/multi/opt/5172733e-cff1-40c8-b487-8fb926350463-1600-1536w.jpg"
+            alt="Nos engins sur chantier"
+            class="about-img-main"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80'"
+          />
+          <img
+            src="https://le-de.cdn-website.com/1a27429cc4594832aa260fcf0f04977b/dms3rep/multi/opt/2b6ed243-17a6-42ae-9cf8-7517781bafd3-1600-1536w.jpg"
+            alt="Pelle 24T"
+            class="about-img-secondary"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'"
+          />
+          <div class="about-badge-img" aria-label="20 ans d'expérience">
+            <strong>20+</strong>
+            <span>Ans d'expérience</span>
+          </div>
+        </div>
+        <div class="about-content reveal-right">
+          <span class="section-label">Notre histoire</span>
+          <h2 id="about-title" class="section-title light">Une entreprise<br>de confiance</h2>
+          <p class="about-text">
+            En 2004, Cyrille Fichou crée <strong style="color:var(--orange)">Les Travaux de l'Iton</strong> et l'implante près de L'Aigle, à Saint-Ouen-sur-Iton dans l'Orne. Vingt ans d'expérience au service des particuliers, des professionnels et des collectivités.
+          </p>
+          <p class="about-text">
+            Réactifs, nous nous engageons à prendre en charge votre demande afin de pouvoir étudier votre projet et vous proposer un devis de réalisation. Nous étudions votre projet et votre budget afin de vous proposer la prestation la plus adaptée. Tous nos devis sont personnalisés.
+          </p>
+          <div class="about-values" role="list">
+            <div class="about-value" role="listitem">
+              <div class="about-value-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="about-value-text">Réponse réactive aux demandes de devis</span>
+            </div>
+            <div class="about-value" role="listitem">
+              <div class="about-value-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="about-value-text">Devis personnalisés adaptés à votre budget</span>
+            </div>
+            <div class="about-value" role="listitem">
+              <div class="about-value-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="about-value-text">Intervention pour particuliers, professionnels et collectivités</span>
+            </div>
+            <div class="about-value" role="listitem">
+              <div class="about-value-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="about-value-text">Implantés localement dans l'Orne depuis plus de 20 ans</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-primary">Discuter de votre projet</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALERIE
+  ============================================================ -->
+  <section id="gallery" aria-labelledby="gallery-title">
+    <div class="container">
+      <div class="gallery-header reveal">
+        <span class="section-label">Nos réalisations</span>
+        <h2 id="gallery-title" class="section-title">Notre matériel<br>& chantiers</h2>
+        <p class="section-subtitle" style="margin:16px auto 0">Un parc matériel moderne pour des interventions efficaces sur tous types de chantiers.</p>
+      </div>
+      <div class="gallery-grid reveal">
+        <div class="gallery-item">
+          <img
+            src="https://le-de.cdn-website.com/1a27429cc4594832aa260fcf0f04977b/dms3rep/multi/opt/5172733e-cff1-40c8-b487-8fb926350463-1600-1536w.jpg"
+            alt="Nos engins de chantier"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80'"
+          />
+          <div class="gallery-overlay" aria-hidden="true">
+            <div>
+              <div class="gallery-tag">Parc matériel</div>
+              <div class="gallery-caption">Nos engins</div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://le-de.cdn-website.com/1a27429cc4594832aa260fcf0f04977b/dms3rep/multi/opt/7729ff10-3a8f-412c-b9f8-a9f392d7e0ca-1600-1536w.jpg"
+            alt="Machine de concassage"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80'"
+          />
+          <div class="gallery-overlay" aria-hidden="true">
+            <div>
+              <div class="gallery-tag">Spécialité</div>
+              <div class="gallery-caption">Concassage</div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://le-de.cdn-website.com/1a27429cc4594832aa260fcf0f04977b/dms3rep/multi/opt/2b6ed243-17a6-42ae-9cf8-7517781bafd3-1600-1536w.jpg"
+            alt="Pelle hydraulique 24 tonnes"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'"
+          />
+          <div class="gallery-overlay" aria-hidden="true">
+            <div>
+              <div class="gallery-tag">Location</div>
+              <div class="gallery-caption">Pelle 24T</div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
+            alt="Chantier de terrassement"
+            loading="lazy"
+          />
+          <div class="gallery-overlay" aria-hidden="true">
+            <div>
+              <div class="gallery-tag">Chantier</div>
+              <div class="gallery-caption">Terrassement</div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=800&q=80"
+            alt="Travaux d'assainissement"
+            loading="lazy"
+          />
+          <div class="gallery-overlay" aria-hidden="true">
+            <div>
+              <div class="gallery-tag">Réseau</div>
+              <div class="gallery-caption">Assainissement</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       POURQUOI NOUS CHOISIR
+  ============================================================ -->
+  <section id="why" aria-labelledby="why-title">
+    <div class="container">
+      <div class="why-grid">
+        <div>
+          <span class="section-label">Nos atouts</span>
+          <h2 id="why-title" class="section-title">Pourquoi choisir<br>Les Travaux de l'Iton ?</h2>
+          <div class="why-items">
+            <div class="why-item reveal delay-1">
+              <div class="why-item-num" aria-hidden="true">01</div>
+              <div>
+                <h3 class="why-item-title">Réactivité garantie</h3>
+                <p class="why-item-text">Nous nous engageons à répondre rapidement à votre demande et à étudier votre projet dans les meilleurs délais. Votre chantier n'attend pas.</p>
+              </div>
+            </div>
+            <div class="why-item reveal delay-2">
+              <div class="why-item-num" aria-hidden="true">02</div>
+              <div>
+                <h3 class="why-item-title">Devis personnalisé & transparent</h3>
+                <p class="why-item-text">Chaque devis est étudié selon votre projet et votre budget. Pas de formule standard : une prestation sur-mesure, adaptée à vos besoins réels.</p>
+              </div>
+            </div>
+            <div class="why-item reveal delay-3">
+              <div class="why-item-num" aria-hidden="true">03</div>
+              <div>
+                <h3 class="why-item-title">Expertise locale depuis 2004</h3>
+                <p class="why-item-text">Implantés à Saint-Ouen-sur-Iton dans l'Orne, nous connaissons le terrain local. Plus de 20 ans d'expérience au service de la région de L'Aigle.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="why-visual reveal-right">
+          <div class="why-bg-shape" aria-hidden="true"></div>
+          <img
+            src="https://le-de.cdn-website.com/1a27429cc4594832aa260fcf0f04977b/dms3rep/multi/opt/2b6ed243-17a6-42ae-9cf8-7517781bafd3-1600-1536w.jpg"
+            alt="Engin de chantier"
+            class="why-img"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80'"
+          />
+          <div class="why-accent-box">
+            <strong>+20</strong>
+            <span>ans d'expérience</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <span class="section-label">Parlons de votre projet</span>
+          <h2 id="contact-title" class="section-title light">Demandez<br>votre devis</h2>
+          <p class="section-subtitle" style="color:rgba(255,255,255,0.5); margin-top:16px">
+            Pour un devis ou pour tous renseignements complémentaires, la société Les Travaux de l'Iton reste à votre entière disposition.
+          </p>
+          <div class="contact-details" role="list">
+            <a href="tel:0678506904" class="contact-item" role="listitem">
+              <div class="contact-item-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.18a19.79 19.79 0 01-3.07-8.72A2 2 0 012 .5h3a2 2 0 012 1.72c.13.96.35 1.9.67 2.81a2 2 0 01-.45 2.11L5.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.54 2.81.67A2 2 0 0122 14.92z"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Téléphone</div>
+                <div class="contact-item-value">06 78 50 69 04</div>
+              </div>
+            </a>
+            <a href="mailto:travauxdeliton@aol.com" class="contact-item" role="listitem">
+              <div class="contact-item-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Email</div>
+                <div class="contact-item-value">travauxdeliton@aol.com</div>
+              </div>
+            </a>
+            <div class="contact-item" role="listitem">
+              <div class="contact-item-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Adresse</div>
+                <div class="contact-item-value">La Grande Noé<br>61300 Saint-Ouen-sur-Iton</div>
+              </div>
+            </div>
+          </div>
+          <div class="map-placeholder" role="img" aria-label="Carte de localisation — La Grande Noé, Saint-Ouen-sur-Iton">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <p>La Grande Noé, 61300 Saint-Ouen-sur-Iton</p>
+          </div>
+        </div>
+
+        <div class="contact-form reveal-right" role="form" aria-label="Formulaire de demande de devis">
+          <div class="form-title">Votre demande de devis</div>
+          <form novalidate onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nom">Nom *</label>
+                <input type="text" id="nom" name="nom" placeholder="Dupont" required autocomplete="family-name" />
+              </div>
+              <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Jean" autocomplete="given-name" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tel">Téléphone *</label>
+                <input type="tel" id="tel" name="tel" placeholder="06 12 34 56 78" required autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="jean@exemple.fr" autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="service">Type de prestation</label>
+              <select id="service" name="service">
+                <option value="">Sélectionnez un service...</option>
+                <option value="terrassement">Terrassement</option>
+                <option value="assainissement">Assainissement / Vidange</option>
+                <option value="amenagement">Aménagement extérieur</option>
+                <option value="maconnerie">Maçonnerie</option>
+                <option value="location">Location d'engins</option>
+                <option value="concassage">Concassage</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Description du projet *</label>
+              <textarea id="message" name="message" placeholder="Décrivez votre projet, la surface approximative, les contraintes particulières..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Envoyer ma demande
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer id="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="#hero" class="footer-logo" aria-label="Les Travaux de l'Iton — Retour en haut">
+          <img
+            src="https://le-de.cdn-website.com/1a27429cc4594832aa260fcf0f04977b/dms3rep/multi/opt/0530eb93-8fa4-4d12-81e6-2f9fef1f87cb-800-247w.jpg"
+            alt="Les Travaux de l'Iton"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+          />
+          <span style="display:none; font-family:var(--font-heading); font-size:0.9rem; font-weight:700; color:white; text-transform:uppercase; letter-spacing:0.05em;">Les Travaux<br><span style="color:var(--orange)">de l'Iton</span></span>
+        </a>
+        <nav class="footer-links" aria-label="Navigation pied de page">
+          <a href="#services">Services</a>
+          <a href="#about">À propos</a>
+          <a href="#gallery">Réalisations</a>
+          <a href="#contact">Contact</a>
+          <a href="tel:0678506904">06 78 50 69 04</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2024 <strong>Les Travaux de l'Iton</strong> — Saint-Ouen-sur-Iton, Orne</p>
+        <p class="footer-legal">Mentions légales — Maquette non contractuelle</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // ---- Navbar scroll effect ----
+    const navbar = document.getElementById('navbar');
+    const heroEl = document.getElementById('hero');
+
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ---- Hero parallax & ken burns ----
+    heroEl.classList.add('loaded');
+
+    // ---- Hamburger / Mobile menu ----
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('nav-mobile');
+    const mobileLinks = navMobile.querySelectorAll('a');
+
+    function toggleMenu(open) {
+      hamburger.classList.toggle('open', open);
+      navMobile.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', () => {
+      toggleMenu(!hamburger.classList.contains('open'));
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') toggleMenu(false);
+    });
+
+    // ---- Intersection Observer — scroll reveal ----
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ---- Counter animation for stats ----
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = el.textContent.replace(/[^0-9]/g, '');
+          const suffix = el.textContent.replace(/[0-9]/g, '');
+          if (!target) return;
+          let count = 0;
+          const duration = 1200;
+          const step = Math.ceil(parseInt(target) / (duration / 16));
+          const timer = setInterval(() => {
+            count = Math.min(count + step, parseInt(target));
+            el.textContent = count + suffix;
+            if (count >= parseInt(target)) clearInterval(timer);
+          }, 16);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(el => counterObserver.observe(el));
+
+    // ---- Smooth scroll for anchor links ----
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = navbar.offsetHeight + 16;
+          window.scrollTo({
+            top: target.getBoundingClientRect().top + window.scrollY - offset,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // ---- Active nav link ----
+    const sections = document.querySelectorAll('section[id]');
+    const navLinkEls = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+
+    const activeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinkEls.forEach(link => {
+            const matches = link.getAttribute('href') === '#' + id;
+            link.style.color = matches ? 'var(--orange)' : '';
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => activeObserver.observe(s));
+
+    // ---- Form submit handler ----
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      const originalContent = btn.innerHTML;
+      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Demande envoyée !';
+      btn.style.background = '#22c55e';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = originalContent;
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3500);
+    }
+  </script>
+
+</body>
+</html>

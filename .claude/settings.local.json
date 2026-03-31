@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone:*)",
+      "Bash(npx uipro-cli:*)",
+      "WebFetch(domain:www.lestravauxdeliton.fr)",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"construction artisan terrassement premium\" --domain style -n 3)",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"construction orange bold professional\" --domain color -n 3)",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"artisan premium bold heading\" --domain typography -n 3)"
+    ]
+  }
+}
