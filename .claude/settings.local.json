@@ -6,7 +6,8 @@
       "WebFetch(domain:www.lestravauxdeliton.fr)",
       "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"construction artisan terrassement premium\" --domain style -n 3)",
       "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"construction orange bold professional\" --domain color -n 3)",
-      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"artisan premium bold heading\" --domain typography -n 3)"
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"artisan premium bold heading\" --domain typography -n 3)",
+      "Bash(find C:UsersmonkeOneDriveBureauTravaux_De_Liton -iname *logo* -o -iname *new*)"
     ]
   }
 }
